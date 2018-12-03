@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>计时事件</title>
+</head>
+<style>
+    body {
+        margin: 0 auto;
+
+    }
+
+    .box {
+        height: 1200px;
+        width: 1000px;
+    }
+
+    #btn {
+        margin: auto;
+        margin-top: 400px;
+        width: 100px;
+        height: 100px;
+        border: solid 1px gray;
+        border-radius: 50%;
+        background: rgba(13, 202, 98, 0.7);
+        text-align: center;
+        line-height: 100px;
+        color: white;
+        font-size: 10px;
+        transition: width 1s;
+        animation: 1px;
+    }
+
+    #time {
+       height: 30px;
+       text-align: center;
+       font-size: 18px;
+       
+    }
+
+    @keyframes stop {
+        0% {
+            transform: translateX(0px);
+        }
+
+        100% {
+            transform: translateX(100px);
+        }
+    }
+
+    @keyframes start {}
+
+    @keyframes go {
+        0% {
+            transform: rotateY(0deg);
+        }
+
+        100% {
+            transform: rotateY(360deg);
+        }
+    }
+</style>
+
+<body>
+    <div class="box">
+        <p id="time"></p>
+        <div id="btn" onclick="myTimer()"> 点击我暂停时间</div>
+    </div>
+</body>
+<script>
+    var now = setInterval(function () { nowTime() }, 1000);
+    var text = document.getElementById("btn");
+    var time = document.getElementById("time");
+    var i = 0;
+
+
+    function myTimer() {
+        i += 1;
+        if (i % 2 == 1) {
+            clearInterval(now);
+            text.innerHTML = "点击我恢复时间";
+        }
+        else {
+            text.style.height = 100 + "px";
+            text.style.width = 100 + "px";
+            text.style.lineHeight = 100 + "px";
+            text.innerHTML = "点击我暂停时间";
+            
+        }
+
+    }
+    function nowTime() {
+        var t = new Date().toLocaleTimeString();
+        time.innerHTML = t;
+    }
+
+
+
+</script>
+
+</html>
