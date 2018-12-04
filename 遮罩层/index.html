@@ -11,6 +11,7 @@
     body {
         margin: 0 auto;
     }
+
     .box {
         margin: auto;
         margin-top: 150px;
@@ -18,16 +19,19 @@
         border: solid 1px gray;
         height: 420px;
     }
-    .box ul{
+
+    .box ul {
         padding: 0px;
     }
+
     .box ul li {
         list-style: none;
         padding: 0;
         float: left;
-        padding-left:30px ;
-        padding-top :30px;
+        padding-left: 30px;
+        padding-top: 30px;
     }
+
     .box ul li img {
         width: 100px;
         height: 150px;
@@ -46,5 +50,15 @@
         </ul>
     </div>
 </body>
+<script>
+    var text =document.getElementById("img1");
+    var liimg = document.getElementsByTagName("li");
+    liimg.onmouseover=function () {
+        alert("起！");
+    }
+    liimg.onmouseout=function () {
+        alert("落！");
+    }
+</script>
 
 </html>
