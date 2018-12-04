@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<div onclick="demo1()">召唤阿斯达</div>
+<div onclick="demo2()">召唤小沫</div>
+<div onclick="demo3()">召唤茉莉</div>
+
+<body>
+
+</body>
+<script>
+    people = new Object();
+    function demo1() {
+        people.face = "瓜子脸";
+        people.money = "$1111";
+        people.sex = "男";
+        people.name = "阿斯达";
+        write();
+    }
+    function demo2() {
+        people.face = "瓜子脸";
+        people.money = "$122111";
+        people.sex = "女";
+        people.name = "小沫";
+        write();
+    }
+    function demo3() {
+        people.face = "国字脸";
+        people.money = "-$1111";
+        people.sex = "女";
+        people.name = "茉莉";
+        write();
+    }
+    function write() {
+        document.write(people.face + people.money + people.sex + people.name);
+    }
+</script>
+
+</html>
