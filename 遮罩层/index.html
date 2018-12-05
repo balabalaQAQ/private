@@ -22,43 +22,60 @@
 
     .box ul {
         padding: 0px;
+     
     }
 
     .box ul li {
         list-style: none;
         padding: 0;
         float: left;
-        padding-left: 30px;
+        margin-left: 30px;
         padding-top: 30px;
+        position:relative;
+        overflow: hidden;
     }
 
     .box ul li img {
         width: 100px;
         height: 150px;
     }
+    .dowm{
+        position: absolute;;
+        width: 100px;
+        height: 40px;
+        left: 0px;
+        top:190px;
+        background: linear-gradient(rgba(128,128,128,0),rgba(0, 0, 0, 1)); 
+    }
 </style>
 
 <body>
     <div class="box">
         <ul>
-            <li><img src="1.jpg"></li>
-            <li><img src="1.jpg"></li>
-            <li><img src="1.jpg"></li>
-            <li><img src="1.jpg"></li>
-            <li><img src="1.jpg"></li>
-            <li><img src="1.jpg"></li>
+            <li><img src="1.jpg"><div class="dowm"></div></li>
+            <li><img src="1.jpg"><div class="dowm"></div></li>
+            <li><img src="1.jpg"><div class="dowm"></div></li>
+            <li><img src="1.jpg"><div class="dowm"></div></li>
+            <li><img src="1.jpg"><div class="dowm"></div></li>
+            <li><img src="1.jpg"><div class="dowm"></div></li>
         </ul>
     </div>
 </body>
 <script>
-    var text =document.getElementById("img1");
-    var liimg = document.getElementsByTagName("li");
-    liimg.onmouseover=function () {
-        alert("起！");
+    var liimg = document.querySelectorAll("img");
+    for (i = 0; i < liimg.length; i++) 
+    {
+        liimg[i].onmouseover = function () {
+            
+        }
+        liimg[i].onmouseout = function () {
+            
+        }
     }
-    liimg.onmouseout=function () {
-        alert("落！");
+    function MyAnimation(){
+
     }
+
 </script>
 
 </html>
