@@ -1,46 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>弹幕</title>
 </head>
+
 <body>
- 
+
 </body>
 <script>
-var list =document.querySelectorAll("");
-//屏幕高度
-var oSend=document.querySelector('.send');
-for( var i=0;i<list.length;i++)
-{
-    init(list[i]);
-}
-//初始化函数
-function init(obj)
-{
-    //获取可视化的高,宽度
-    var screenHeight =document.documenntElement.clientHeight,
-    screenWidth=document.documenntElement.clientWidth;
+    var list = document.querySelectorAll("");
+    //屏幕高度
+    var oSend = document.querySelector('.send');
+    var oshow =document.querySelector('.show');
+    var btn =document.querySelector('.btn');
+    var text =document.querySelector('.text');
+    for (var i = 0; i < list.length; i++) {
+        init(list[i]);
+    }
+    //鼠标点击发送事件
+    btn.onclick =function(){
+        var oDiv =document.createElement('Div');
+        oDiv.innerHTML =text.value;
+        oDiv.className="";
+        oshow.appendChild(oDiv);
+        init(obj);//初始化
+    }
+    //初始化函数
+    function init(obj) {
+        //获取可视化的高,宽度
+        var screenHeight = document.documenntElement.clientHeight,
+            screenWidth = document.documenntElement.clientWidth,
+            maxleft = screenWidth - obj.offsetWidth;//
 
-    maxleft=screenWidth-obj.offsetWidth;//最大的left值
-    maxtop =screenHeight-oSend.offsetHeight-obj.offsetHeight;//最大的TOP值
-    obj.style.top = ~~Math.random()*maxtop+"px";
-    obj.style.left =maxleft+'px';
-    obj.style.color=randomColor();
-}
-//移动函数
-function move(obj)
-{
-    maxleft-=4;
-    obj.style.left =maxleft+'px';
-}
+        maxtop = screenHeight - oSend.offsetHeight - obj.offsetHeight;//最大的TOP值
+        obj.style.top = ~~Math.random() * maxtop + "px";
+        obj.style.left = maxleft + 'px';
+        obj.style.color = randomColor();
+        move(obj,maxLeft);
+    }
+    //移动函数
+    function move(obj,maxLeft) {
 
-//随机颜色函数
-function randomColor()
-{
-    return '#'+Math.random().toString(16).slice(-6);//截取6位数作为随机颜色
-}
+        maxleft -= 4;//速度
+        if (maxLeft > -obj.offsetWidth) {
+            obj.style.left = maxleft + 'px';
+            requestAnimationFrame(function () {
+                move(obj, maxLeft)
+            });//H5动画函数
+        }
+        else{//拓展性
+            oshow.childElementCount();//清除子元素节点
+            inot(obj);//重新实例化
+        }
+    }
+
+    //随机颜色函数
+    function randomColor() {
+        return '#' + Math.random().toString(16).slice(-6);//截取6位数作为随机颜色
+    }
 </script>
+
 </html>
