@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>弹幕</title>
+</head>
+<body>
+ 
+</body>
+<script>
+var list =document.querySelectorAll("");
+//屏幕高度
+var oSend=document.querySelector('.send');
+for( var i=0;i<list.length;i++)
+{
+    init(list[i]);
+}
+//初始化函数
+function init(obj)
+{
+    //获取可视化的高,宽度
+    var screenHeight =document.documenntElement.clientHeight,
+    screenWidth=document.documenntElement.clientWidth;
+
+    maxleft=screenWidth-obj.offsetWidth;//最大的left值
+    maxtop =screenHeight-oSend.offsetHeight-obj.offsetHeight;//最大的TOP值
+    obj.style.top = ~~Math.random()*maxtop+"px";
+    obj.style.left =maxleft+'px';
+    obj.style.color=randomColor();
+}
+//移动函数
+function move(obj)
+{
+    maxleft-=4;
+    obj.style.left =maxleft+'px';
+}
+
+//随机颜色函数
+function randomColor()
+{
+    return '#'+Math.random().toString(16).slice(-6);//截取6位数作为随机颜色
+}
+</script>
+</html>
