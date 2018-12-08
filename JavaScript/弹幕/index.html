@@ -7,30 +7,62 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>弹幕</title>
 </head>
+<style>
+    body{
+        margin: 0;
+        padding: 0;
+    }
+    .box{
+        position:absolute;
+        width: 100%;
+        height: 800px;
+        background-color: black;
+    }
+    .text{
+        width: 255px;
+        position: absolute;
+        height: 30px;
+        bottom: 10px;
+        left: 40%;
+    }
+    .btn{
+        position:absolute;
+        border: white 1px solid;
+        height: 35px;
+        bottom: 11px;
+        left: 50%;
+    }
+    .list{
+        list-style: none;
+        color: white;
+        }
+</style>
 
 <body>
-<div class="box">
-    <div class="send"></div>
-    <ul>
-        <li>弹幕一号！</li>
-    </ul>
-</div>
+    <div class="box">
+        <ul>
+            <li class="list">弹幕一号！</li>
+        </ul>
+        <input type="text" class="text" value="请输入弹幕">
+        <input type="submit" class="btn" value="发送弹幕">
+    </div>
 </body>
+
 <script>
-    var list = document.querySelectorAll("");
+    var list = document.querySelectorAll(".list");
     //屏幕高度
     var oSend = document.querySelector('.send');
-    var oshow =document.querySelector('.show');
-    var btn =document.querySelector('.btn');
-    var text =document.querySelector('.text');
+    var oshow = document.querySelector('.show');
+    var btn = document.querySelector('.btn');
+    var text = document.querySelector('.text');
     for (var i = 0; i < list.length; i++) {
         init(list[i]);
     }
     //鼠标点击发送事件
-    btn.onclick =function(){
-        var oDiv =document.createElement('Div');
-        oDiv.innerHTML =text.value;
-        oDiv.className="";
+    btn.onclick = function () {
+        var oDiv = document.createElement('Div');
+        oDiv.innerHTML = text.value;
+        oDiv.className = "";
         oshow.appendChild(oDiv);
         init(obj);//初始化
     }
@@ -45,10 +77,10 @@
         obj.style.top = ~~Math.random() * maxtop + "px";
         obj.style.left = maxleft + 'px';
         obj.style.color = randomColor();
-        move(obj,maxLeft);
+        move(obj, maxLeft);
     }
     //移动函数
-    function move(obj,maxLeft) {
+    function move(obj, maxLeft) {
 
         maxleft -= 4;//速度
         if (maxLeft > -obj.offsetWidth) {
@@ -57,7 +89,7 @@
                 move(obj, maxLeft)
             });//H5动画函数
         }
-        else{//拓展性
+        else {//拓展性
             oshow.childElementCount();//清除子元素节点
             inot(obj);//重新实例化
         }
