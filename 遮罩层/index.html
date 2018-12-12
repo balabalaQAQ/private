@@ -22,7 +22,7 @@
 
     .box ul {
         padding: 0px;
-     
+
     }
 
     .box ul li {
@@ -31,7 +31,7 @@
         float: left;
         margin-left: 30px;
         padding-top: 30px;
-        position:relative;
+        position: relative;
         overflow: hidden;
     }
 
@@ -39,41 +39,77 @@
         width: 100px;
         height: 150px;
     }
-    .dowm{
-        position: absolute;;
+
+    .dowm {
+        position: absolute;
         width: 100px;
         height: 40px;
         left: 0px;
-        top:190px;
-        background: linear-gradient(rgba(128,128,128,0),rgba(0, 0, 0, 1)); 
-        transition: transform 2s;
-   }
+        top: 160px;
+        background: linear-gradient(rgba(128, 128, 128, 0), rgba(0, 0, 0, 1));
+        transition: transform 1.5s; 
+        text-align: center;
+        color: white;
+    }
+    .dowm:hover{
+        transform: translateY(-18px);
+    }
+    .dowm_six{
+        position: absolute;
+        width: 100px;
+        height: 150px;
+        background: black;
+        top: 30px;
+        left: 0px;
+        display: inline;
+    }
+    .dowm_six:hover{
+        display:none;
+    }
+    .dowm_five{
+        position: absolute;
+        width: 100px;
+        height: 150px;
+        background: black;
+        top: 30px;
+        left: 0px;
+        display:none;
+    }
+    .dowm_five:hover{
+        display: inline;
+    }
+    @keyframes myframes{
+        0%{
+
+        }
+    }
 </style>
 
 <body>
     <div class="box">
         <ul>
-            <li><img src="1.jpg"><div class="dowm"></div></li>
-            <li><img src="1.jpg"><div class="dowm"></div></li>
-            <li><img src="1.jpg"><div class="dowm"></div></li>
-            <li><img src="1.jpg"><div class="dowm"></div></li>
-            <li><img src="1.jpg"><div class="dowm"></div></li>
-            <li><img src="1.jpg"><div class="dowm"></div></li>
+            <li><img src="1.jpg">
+                <div class="dowm">111</div>
+            </li>
+            <li><img src="1.jpg">
+                <div class="dowm">222</div>
+            </li>
+            <li><img src="1.jpg">
+                <div class="dowm">333</div>
+            </li>
+            <li><img src="1.jpg">
+                <div class="dowm">444</div>
+            </li>
+            <li><img src="1.jpg">
+                <div class="dowm_five">555</div>
+            </li>
+            <li><img src="1.jpg">
+                <div class="dowm_six">666</div>
+            </li>
         </ul>
     </div>
 </body>
 <script>
-    var liimg = document.querySelectorAll("img");
-    for (i = 0; i < liimg.length; i++) 
-    {
-        liimg[i].onmouseover = function () {
-            alert(i);
-        }
-        liimg[i].onmouseout = function () {
-            
-        }
-    }
-
 </script>
 
-</html>.
+</html>
