@@ -66,7 +66,7 @@
     .dowm_six:hover{
         display:none;
     }
-    .dowm_five{
+    #five{
         position: absolute;
         width: 100px;
         height: 150px;
@@ -75,8 +75,8 @@
         left: 0px;
         display:none;
     }
-    .dowm_five:hover{
-        display: inline;
+    #five:hover{
+        display: block;
     }
     @keyframes myframes{
         0%{
@@ -100,8 +100,8 @@
             <li><img src="1.jpg">
                 <div class="dowm">444</div>
             </li>
-            <li><img src="1.jpg">
-                <div class="dowm_five">555</div>
+            <li><img src="1.jpg"onmouseover="five()">
+                <div id="five" ></div>
             </li>
             <li><img src="1.jpg">
                 <div class="dowm_six">666</div>
@@ -110,6 +110,7 @@
     </div>
 </body>
 <script>
+
 </script>
 
 </html>
