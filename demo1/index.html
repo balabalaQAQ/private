@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>综合应用</title>
 </head>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <style>
     body{
         margin: 0;
@@ -22,6 +23,7 @@
         background: black;
         text-align: right;
         height: 60px;
+        
     }
     header ul li{
         line-height: 60px;
@@ -29,6 +31,7 @@
         color: white;
         font-size: 20px;
         float: right;
+        margin-right: 60px;
     }
     .item{
         margin-left: 250px;
@@ -47,6 +50,20 @@
     .item ul li img{
         width: 200px;
         height: 150px;
+    }
+    .control{
+        position:fixed;
+        top: 100px;
+        right: 20px;
+        background-color: black;
+        color: white;
+    }
+    .control li{
+        padding: 10px;
+        line-height: 30px;
+        width: 50px;
+        text-align: center;
+        border: 1px gray solid;
     }
 </style>
 <body>
@@ -103,19 +120,27 @@
         </ul>
     </div>
     <ul  class="control">
-        <li>
+        <li class="list">
             自然
         </li>
-        <li>
+        <li class="list">
             唯美
         </li>
-        <li>
+        <li class="list">
             清新
         </li>
-        <li>
+        <li class="list">
             自然
         </li>
     </ul>
 </body>
-
+<script>
+$('.list').click( function(){
+    var index =$(this).index();//点击元素的下标
+    var height =$(".item").eq(index).offset().top;
+    $("html,body").animate({
+        scrollTop:height+"px"//通过JQ动画方法 修改滚动条位置
+    });
+});
+</script>
 </html>
