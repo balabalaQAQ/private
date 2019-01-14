@@ -33,7 +33,7 @@
         width: 250px;
         height: 180px;
         margin: 10px 0 0 10px;
-
+        transition: transform 0.8s;
     }
 
     .box ul li img {
@@ -82,6 +82,7 @@
     var startX,startY;//被选中的Li元素初始位置
     var x1,y1;//鼠标的位置
     var z=1;
+    var goalele; //保存碰撞成功的元素
     function drag(ev)
     {
    
@@ -116,14 +117,39 @@
                 var nowX=startX+x2-x1;
                 var nowY=startY+y2-y1;
 
-                
                 ele.style.left=nowX+"px";
                 ele.style.top=nowY+"px";
+
+                //元素碰撞
+                var xr =x2-Obox.offsetLeft;
+                var yr =y2-Obox.offsetTop;
+                for(let i = 0; i < Ali.length; i++) 
+                {  
+                    Ali[i].style.transform="";
+                    if(
+                        Ali[i]!=ele&&//不能和自己碰撞
+                        xr>Ali[i].offsetLeft&&
+                        xr<Ali[i].offsetLeft+300&&
+                        yr>Ali[i].offsetTop&& 
+                        yr<Ali[i].offsetTop+150)
+                    {
+                        Ali[i].style.transform="scale(1.05)";
+                        goalele=  Ali[i];
+                        console.log("1111");
+                    }
+                   
+                }
             }
             break;
 
             case "mouseup"://鼠标放下
             toggle=false;
+            ele.style.left=goalele.offsetLeft+"px";
+            ele.style.top=goalele.offsetTop+"px";
+            goalele.style.left=startX+"px";
+            goalele.style.top=startY+"px";
+            goalele.style.transform="";
+            goalele=null;
             break;
 
         }
