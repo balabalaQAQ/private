@@ -33,7 +33,7 @@
         width: 250px;
         height: 180px;
         margin: 10px 0 0 10px;
-        transition: transform 0.8s;
+        transition: transform 1s;
     }
 
     .box ul li img {
@@ -47,25 +47,24 @@
     <div class="box">
         <ul>
             <li><img src="1.png"></li>
-            <li><img src="1.png"></li>
-            <li><img src="1.png"></li>
-            <li><img src="1.png"></li>
-            <li><img src="1.png"></li>
-            <li><img src="1.png"></li>
-            <li><img src="1.png"></li>
-            <li><img src="1.png"></li>
-            <li><img src="1.png"></li>
+            <li><img src="2.png"></li>
+            <li><img src="3.png"></li>
+            <li><img src="4.png"></li>
+            <li><img src="5.png"></li>
+            <li><img src="6.png"></li>
+            <li><img src="7.png"></li>
+            <li><img src="8.png"></li>
+            <li><img src="9.png"></li>
         </ul>
     </div>
 </body>
 <script>
     var Ali = document.querySelectorAll("li");
     var liPs = [];
-    var Obox=document.querySelector(".box");
+    var Obox = document.querySelector(".box");
     for (let i = 0; i < Ali.length; i++) {
- 
+
         liPs.push([Ali[i].offsetLeft, Ali[i].offsetTop]);
-   
         setTimeout(function () {
             Ali[i].style.position = "absolute";
             Ali[i].style.left = liPs[i][0] + "px";
@@ -74,83 +73,91 @@
         }, 0);
     }
     //监听
-    Obox.addEventListener("mousedown",drag);
-    document.addEventListener("mousemove",drag);
-    document.addEventListener("mouseup",drag);
-    var ele=null;//被选中的Li元素
-    var toggle =false;//当前鼠标是否点中
-    var startX,startY;//被选中的Li元素初始位置
-    var x1,y1;//鼠标的位置
-    var z=1;
+    Obox.addEventListener("mousedown", drag);
+    document.addEventListener("mousemove", drag);
+    document.addEventListener("mouseup", drag);
+    var ele = null;//被选中的Li元素
+    var toggle = false;//当前鼠标是否点中
+    var startX, startY;//被选中的Li元素初始位置
+    var x1, y1;//鼠标的位置
+    var z = 1;
     var goalele; //保存碰撞成功的元素
-    function drag(ev)
-    {
-   
+    var go=false;//是否碰撞成功
+    function drag(ev) {
+
         ev.preventDefault();//阻止游览器禁止拖拽元素的事件
-        switch(ev.type)
-        {
+        switch (ev.type) {
             //事件分流
             case "mousedown"://鼠标点击
-            if(ev.path[1]){//找到父元素
-                toggle=true;
-                ele=ev.path[1];
-                
-                //保存初始位置
-                startX=ele.offsetLeft;
-                startY=ele.offsetTop;
+                if (ev.path[1]) {//找到父元素
+                    toggle = true;
+                    ele = ev.path[1];
 
-                //保存鼠标点击的位置
-                x1=ev.clientX; 
-                y1=ev.clientY;
-                //刷新点击LI的层级
-                ele.style.zIndex=z++;
-             }
-            break;
-          
-            case "mousemove"://鼠标移动
-            if(toggle)
-            {
-                //保存鼠标移动的位置
-                var x2=ev.clientX; 
-                var y2=ev.clientY;
-                //计算新位置
-                var nowX=startX+x2-x1;
-                var nowY=startY+y2-y1;
+                    //保存初始位置
+                    startX = ele.offsetLeft;
+                    startY = ele.offsetTop;
 
-                ele.style.left=nowX+"px";
-                ele.style.top=nowY+"px";
-
-                //元素碰撞
-                var xr =x2-Obox.offsetLeft;
-                var yr =y2-Obox.offsetTop;
-                for(let i = 0; i < Ali.length; i++) 
-                {  
-                    Ali[i].style.transform="";
-                    if(
-                        Ali[i]!=ele&&//不能和自己碰撞
-                        xr>Ali[i].offsetLeft&&
-                        xr<Ali[i].offsetLeft+300&&
-                        yr>Ali[i].offsetTop&& 
-                        yr<Ali[i].offsetTop+150)
-                    {
-                        Ali[i].style.transform="scale(1.05)";
-                        goalele=  Ali[i];
-                        console.log("1111");
-                    }
-                   
+                    //保存鼠标点击的位置
+                    x1 = ev.clientX;
+                    y1 = ev.clientY;
+                    //刷新点击LI的层级
+                    ele.style.zIndex = z++;
                 }
-            }
-            break;
+                break;
+
+            case "mousemove"://鼠标拖拽
+                if (toggle) {
+                    go=false;
+                    //保存鼠标拖拽(移动)的位置
+                    var x2 = ev.clientX;
+                    var y2 = ev.clientY;
+                    //计算新位置
+                    var nowX = startX + x2 - x1;
+                    var nowY = startY + y2 - y1;
+
+                    ele.style.left = nowX + "px";
+                    ele.style.top = nowY + "px";
+
+                    //元素碰撞
+                    var xr = x2 - Obox.offsetLeft;
+                    var yr = y2 - Obox.offsetTop;
+                    for (let i = 0; i < Ali.length; i++) {
+                        Ali[i].style.transform = "";
+                        if (
+                            Ali[i] != ele &&//不能和自己碰撞
+                            xr > Ali[i].offsetLeft &&
+                            xr < Ali[i].offsetLeft + 250&&
+                            yr > Ali[i].offsetTop &&
+                            yr < Ali[i].offsetTop + 180) {
+                            Ali[i].style.transform = "scale(1.05)";
+                            goalele = Ali[i];
+                            go=true;
+                            console.log(Ali[i].offsetLeft);
+                        }
+
+                    }
+                }
+                break;
 
             case "mouseup"://鼠标放下
-            toggle=false;
-            ele.style.left=goalele.offsetLeft+"px";
-            ele.style.top=goalele.offsetTop+"px";
-            goalele.style.left=startX+"px";
-            goalele.style.top=startY+"px";
-            goalele.style.transform="";
-            goalele=null;
-            break;
+            toggle = false;
+                if (go) {
+                    ele.style.left = goalele.offsetLeft + "px";
+                    ele.style.top = goalele.offsetTop + "px";
+                    goalele.style.left = startX + "px";
+                    goalele.style.top = startY + "px";
+                    goalele.style.transform = "";
+                    goalele = null;
+                    break;
+                }
+                else { 
+                    for (let i = 0; i < Ali.length; i++) {
+                        ele.style.left = startX + "px";
+                        ele.style.top = startY + "px";
+                        toggle = false;
+                    }
+                    break;
+                }
 
         }
     }
