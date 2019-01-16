@@ -82,7 +82,7 @@
     var x1, y1;//鼠标的位置
     var z = 1;
     var goalele; //保存碰撞成功的元素
-    var go=false;//是否碰撞成功
+    var go = false;//是否碰撞成功
     function drag(ev) {  //监听
 
         ev.preventDefault();//阻止游览器禁止拖拽元素的事件
@@ -107,7 +107,7 @@
 
             case "mousemove"://鼠标拖拽
                 if (toggle) {
-                    go=false;
+                    go = false;
                     //保存鼠标拖拽(移动)的位置
                     var x2 = ev.clientX;
                     var y2 = ev.clientY;
@@ -123,25 +123,29 @@
                     var yr = y2 - Obox.offsetTop;
                     for (let i = 0; i < Ali.length; i++) {
                         Ali[i].style.transform = "";
-                        if (
+                         if (
                             Ali[i] != ele &&//不能和自己碰撞
-                            ele.offsetLeft>Ali[i].offsetLeft&&
-                            ele.offsetLeft<Ali[i].offsetLeft + 250&&
-                            ele.offsetTop>Ali[i].offsetTop &&
-                            ele.offsetTop < Ali[i].offsetTop + 180) {
+                            xr> Ali[i].offsetLeft &&
+                            xr< Ali[i].offsetLeft +250&&
+                            yr> Ali[i].offsetTop &&
+                            yr< Ali[i].offsetTop + 180) {
                             Ali[i].style.transform = "scale(1.05)";
                             goalele = Ali[i];
-                            go=true;
+                            go = true;
+    
 
-                        }
-                        if(ele.offsetLeft>Ali[i].offsetLeft &&ele.offsetLeft<Ali[i].offsetLeft + 250)
+                        } 
+                     
+                        
+                        
+                        // if(ele.offsetLeft>Ali[i].offsetLeft &&ele.offsetLeft<Ali[i].offsetLeft + 250)
+                        // {
+                        //  //   console.log(ele.offsetLeft);
+
+                        //  }
+                        if(ele.Top>Ali[i].offsetTop &&ele.offsetTop<Ali[i].offsetTop + 250)
                         {
-                         //   console.log(ele.offsetLeft);
-                           
-                        }
-                        if(ele.offsetTop>Ali[i].offsetTop &&ele.offsetTop<Ali[i].offsetTop + 250)
-                        {
-                            console.log(ele.offsetTop);
+                        
                         }
 
                     }
@@ -149,7 +153,7 @@
                 break;
 
             case "mouseup"://鼠标放下
-            toggle = false;
+                toggle = false;
                 if (go) {
                     ele.style.left = goalele.offsetLeft + "px";
                     ele.style.top = goalele.offsetTop + "px";
@@ -159,11 +163,13 @@
                     goalele = null;
                     break;
                 }
-                else { 
-                    for (let i = 0; i < Ali.length; i++) {
-                        ele.style.left = startX + "px";
-                        ele.style.top = startY + "px";
-                        toggle = false;
+                else {
+                    if (ele != null) {
+                        for (let i = 0; i < Ali.length; i++) {
+                            ele.style.left = startX + "px";
+                            ele.style.top = startY + "px";
+                            toggle = false;
+                        }
                     }
                     break;
                 }
