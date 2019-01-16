@@ -72,7 +72,7 @@
             Ali[i].style.margin = 0;
         }, 0);
     }
-    //监听
+    //向事件添加一个方法
     Obox.addEventListener("mousedown", drag);
     document.addEventListener("mousemove", drag);
     document.addEventListener("mouseup", drag);
@@ -83,7 +83,7 @@
     var z = 1;
     var goalele; //保存碰撞成功的元素
     var go=false;//是否碰撞成功
-    function drag(ev) {
+    function drag(ev) {  //监听
 
         ev.preventDefault();//阻止游览器禁止拖拽元素的事件
         switch (ev.type) {
@@ -125,14 +125,23 @@
                         Ali[i].style.transform = "";
                         if (
                             Ali[i] != ele &&//不能和自己碰撞
-                            xr > Ali[i].offsetLeft &&
-                            xr < Ali[i].offsetLeft + 250&&
-                            yr > Ali[i].offsetTop &&
-                            yr < Ali[i].offsetTop + 180) {
+                            ele.offsetLeft>Ali[i].offsetLeft&&
+                            ele.offsetLeft<Ali[i].offsetLeft + 250&&
+                            ele.offsetTop>Ali[i].offsetTop &&
+                            ele.offsetTop < Ali[i].offsetTop + 180) {
                             Ali[i].style.transform = "scale(1.05)";
                             goalele = Ali[i];
                             go=true;
-                            console.log(Ali[i].offsetLeft);
+
+                        }
+                        if(ele.offsetLeft>Ali[i].offsetLeft &&ele.offsetLeft<Ali[i].offsetLeft + 250)
+                        {
+                         //   console.log(ele.offsetLeft);
+                           
+                        }
+                        if(ele.offsetTop>Ali[i].offsetTop &&ele.offsetTop<Ali[i].offsetTop + 250)
+                        {
+                            console.log(ele.offsetTop);
                         }
 
                     }
